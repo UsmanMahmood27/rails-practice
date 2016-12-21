@@ -1,3 +1,7 @@
 <h1>Welcome#dash_board</h1>
 <p>Find me in app/views/welcome/dash_board.html.erb</p>
 <%= current_user.inspect %>
+<br/>
+<%= image_tag @user.avatar.url %>
+<%= image_tag @user.avatar.url(:medium) %>
+<%= image_tag @user.avatar.url(:thumb) %>

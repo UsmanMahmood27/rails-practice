@@ -5,10 +5,12 @@ class User < ApplicationRecord
   devise :database_authenticatable,  :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:user_name]
 
-validates :password, length: { minimum: 8 }, unless: "password.nil?"
-validates :password, presence: true
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
-validate :password_complexity
+  validates :password, length: { minimum: 8 }, unless: "password.nil?"
+ 
+  validate :password_complexity
 
   def password_complexity
     if password.present? and not password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)./)

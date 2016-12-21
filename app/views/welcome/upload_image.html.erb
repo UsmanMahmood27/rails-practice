@@ -1,0 +1,4 @@
+<%= form_for @user, url: save_image_path, method: 'post', html: { multipart: true } do |form| %>
+  <%= form.file_field :avatar, :require => true %><br/>
+  <%= form.submit 'upload'%>
+<% end %>
